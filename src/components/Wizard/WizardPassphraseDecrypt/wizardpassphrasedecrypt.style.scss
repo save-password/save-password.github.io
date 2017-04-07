@@ -1,0 +1,25 @@
+@import '~styles/colors';
+@import '~styles/padding';
+
+.wizard {
+
+    .input {
+
+    }
+
+    .help {
+      height: 25px;
+      margin-bottom: 20px;
+      font-size: 0.8em!important;
+      font-weight: 400;
+      color: $danger;
+    }
+
+    .helpCheck {
+      text-align: center;
+    }
+
+    .iconCheck {
+      color: $primary;
+    }
+}
