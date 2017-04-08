@@ -4,6 +4,12 @@ import Avatar from './Avatar'
 import styles from './user.style'
 
 const User = ({ className, displayName, onClick }) => {
+
+  const openGenerate = (event) => {
+    event.preventDefault()
+    /* global window */
+    window.open('https://generate-password.github.io')
+  }
   return (
     <div className={`${styles.user} ${className}`} >
       <Avatar className={styles.avatar} />
@@ -12,7 +18,7 @@ const User = ({ className, displayName, onClick }) => {
                      <li className="uk-nav-header">{displayName}</li>
                      <li className={styles.clickable} onClick={onClick}>Sign out</li>
                      <li className="uk-nav-header">Help</li>
-                     <li><a href="https://generate-password.github.io/" onClick="window.open(this.href); return false;" rel="noopener noreferrer" target="_blank">Generate a strong password</a></li>
+                     <li><a href="https://generate-password.github.io/" onClick={openGenerate} rel="noopener noreferrer" target="_blank">Generate a strong password</a></li>
                  </ul>
              </div>
     </div>
