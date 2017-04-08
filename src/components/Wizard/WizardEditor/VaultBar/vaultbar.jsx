@@ -15,7 +15,7 @@ const VaultBar = ({ className, content, passphrase, savedContent, onSave, loadin
     <div className={`${styles.vaultbar} ${className} ${dynamicClassName}`}>
       <div className={styles.extend} />
       {loading() ? <span className={styles.loading}>Saving...</span> : null }
-      {false && !loading() && content !== savedContent ? <button className={`uk-button uk-button-primary ${loading() ? 'uk-disabled' : null}`} onClick={onSave(passphrase, content)}>save</button> : null }
+      {!loading() && content !== savedContent ? <button className={`uk-button uk-button-primary ${loading() ? 'uk-disabled' : null}`} onClick={onSave(passphrase, content)}>save</button> : null }
     </div>
   )
 }
