@@ -103,7 +103,7 @@ const LandingPage = ({ className }) => {
         <Link to="/vault" className="uk-button uk-button-secondary uk-button-large">Create your secured vault</Link>
       </div>
       <div className={styles.footer}>
-        Made with <span data-uk-icon="icon: heart ; ratio: 0.7" /> in Grenoble
+        Made with <span data-uk-icon="icon: heart ; ratio: 0.7" /> from Grenoble
 
         <div className={styles.improvements}>
 
