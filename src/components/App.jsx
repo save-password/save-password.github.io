@@ -8,6 +8,7 @@ import { Router, Route, browserHistory } from 'react-router'
 // import Vault from './Vault'
 import LandingPage from './LandingPage'
 import Wizard from './Wizard'
+import Faq from './Faq'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Router history={browserHistory}>
         <Route path="/" component={LandingPage} />
         <Route path="/vault" component={Wizard} />
+        <Route path="/faq" component={Faq} />
       </Router>
     </div>
   )
