@@ -10,6 +10,11 @@ const User = ({ className, displayName, onClick }) => {
     /* global window */
     window.open('https://generate-password.github.io')
   }
+  const openFaq = (event) => {
+    event.preventDefault()
+    /* global window */
+    window.open('https://generate-password.github.io')
+  }
   return (
     <div className={`${styles.user} ${className}`} >
       <Avatar className={styles.avatar} />
@@ -19,6 +24,7 @@ const User = ({ className, displayName, onClick }) => {
                      <li className={styles.clickable} onClick={onClick}>Sign out</li>
                      <li className="uk-nav-header">Help</li>
                      <li><a href="https://generate-password.github.io/" onClick={openGenerate} rel="noopener noreferrer" target="_blank">Generate a strong password</a></li>
+                     <li><a href="/faq" onClick={openFaq} rel="noopener noreferrer" target="_blank">FAQ</a></li>
                  </ul>
              </div>
     </div>
