@@ -13,7 +13,7 @@ const User = ({ className, displayName, onClick }) => {
   const openFaq = (event) => {
     event.preventDefault()
     /* global window */
-    window.open('https://generate-password.github.io')
+    window.open('/faq')
   }
   return (
     <div className={`${styles.user} ${className}`} >
