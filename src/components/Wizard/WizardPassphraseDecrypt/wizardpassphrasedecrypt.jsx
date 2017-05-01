@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 import styles from './wizardpassphrasedecrypt.style'
 
 const WizardPassphraseEncrypt = ({ className, passphrase,
-  encryptedContent, decryptionError, onChange, minScore, isDecrypted, onCheck }) => {
+  encryptedContent, decryptionError, onChange, minScore, isDecrypted, onCheck, onSignout }) => {
   if (isDecrypted()) {
     setTimeout(() => {
       onCheck()
@@ -22,6 +22,7 @@ const WizardPassphraseEncrypt = ({ className, passphrase,
         { isDecrypted() ? <span className={styles.iconCheck} data-uk-icon="icon: check; ratio: 2" /> : null}
       </div>
       <p />
+      <a href="" className={styles.signout} onClick={onSignout} >Forget me</a>
     </div>
   )
 }
@@ -30,6 +31,7 @@ WizardPassphraseEncrypt.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onCheck: PropTypes.func.isRequired,
+  onSignout: PropTypes.func.isRequired,
   passphrase: PropTypes.string,
   encryptedContent: PropTypes.string,
   decryptionError: PropTypes.string,

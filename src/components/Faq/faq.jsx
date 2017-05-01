@@ -13,7 +13,13 @@ const Faq = ({ className }) => {
   const openBruteForce = (event) => {
     event.preventDefault()
     /* global window */
-    window.open('https://support.google.com/accounts/answer/185839')
+    window.open('https://en.wikipedia.org/wiki/Brute-force_attack')
+  }
+
+  const openDDos = (event) => {
+    event.preventDefault()
+    /* global window */
+    window.open('https://en.wikipedia.org/wiki/Denial-of-service_attack')
   }
 
   const openGithub = (event) => {
@@ -42,7 +48,7 @@ const Faq = ({ className }) => {
                lot of security enhancements like the&nbsp;
                <a href="https://support.google.com/accounts/answer/185839" onClick={openDoubleAuthentication}>double authentication</a>.
                So basic attacks like <a href="https://en.wikipedia.org/wiki/Brute-force_attack" onClick={openBruteForce}>brute-force attacks</a>
-               &nbsp;or <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack">DDoS attacks</a> should be ineffective.
+               &nbsp;or <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack" onClick={openDDos}>DDoS attacks</a> should be ineffective.
             </p>
             <p>
               Finally Google Drive has a private folder by application so everything you
@@ -72,24 +78,17 @@ const Faq = ({ className }) => {
               Because if we could reset your passphrase, it means that hackers could do it too.
             </p>
             <p>
-              So all your data stored in your vault are lost
+              So all your data stored in your vault are lost. Your only solution is to remove the vault and create a new one. See the next question to delete your vault.
             </p>
           </div>
         </li>
         <li>
-          <h2 className="uk-accordion-title">What is a passphrase?</h2>
+          <h2 className="uk-accordion-title">How to delete my vault?</h2>
           <div className="uk-accordion-content">
             <p>
-              We often use the terme passphrase in the application.
-              A passphrase is, like a password, a secret expression
-              used to protect your privacy. However passphrase is most of the time longer
-              than password but easier to remember. In order to do it, a good practice is to
-              select a sentence you secretly love like a citation, a poem and to pick only
-              specific letters of this sentence.
-            </p>
-            <p>
-              For example you may pick the first letter of each word:<br />
-              <strong>C</strong>hoose <strong>a</strong> <strong>j</strong>ob <strong>y</strong>ou <strong>l</strong>ove, <strong>a</strong>nd <strong>y</strong>ou <strong>w</strong>ill <strong>n</strong>ever <strong>h</strong>ave <strong>t</strong>o <strong>w</strong>ork <strong>a</strong> <strong>d</strong>ay <strong>i</strong>n <strong>y</strong>our <strong>l</strong>ife.
+              For security reasons, your only way to delete your vault is to remove it manually.
+              As the vault is stored in a hidden private folder, the only way to delete it is to go in your google drive, then in the "parameters" (the cog on the top left), then "manage the applications".
+              Find the application "save-password" and finally click on button "remove content" in the menu on the right.
             </p>
           </div>
         </li>

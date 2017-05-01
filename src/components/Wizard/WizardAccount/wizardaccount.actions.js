@@ -13,18 +13,9 @@ export const login = () => (dispatch) => {
     dispatch(setUser(user))
     findVault().then((id) => {
       return getVault(id)
-    }).then((file) => {
-      if (file && file.body) {
-        try {
-          const content = JSON.parse(file.body)
-          if (content.hasOwnProperty('data')) {
-            dispatch(setEncryptedContent(content.data))
-            dispatch(setStep('passphrase-decrypt'))
-          }
-        } catch (e) {
-          console.log(e)
-        }
-      }
+    }).then((data) => {
+      dispatch(setEncryptedContent(data))
+      dispatch(setStep('passphrase-decrypt'))
     }).catch(() => {
       dispatch(setStep('passphrase'))
     })

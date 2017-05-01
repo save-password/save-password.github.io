@@ -42,7 +42,7 @@ const WizardPassphrase = ({ className, onClick, passphrase, score, minScore, onC
             <div className={`${styles.indicator} ${indicatorClassNames[4]}`} />
           </div>
         </div>
-        <button className={`uk-button uk-button-primary ${styles.button}`} onClick={onClick} disabled={disabled}>save</button>
+        <button className={`uk-button uk-button-${disabled ? 'danger' : 'primary'} ${styles.button}`} onClick={onClick} disabled={passphrase === ''}>save</button>
       </div>
 
 
