@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { getPassphrase, getEncryptedContent, getDecryptionError, getMinScore, isDecrypted } from 'redux/vault'
 
 import Component from './wizardpassphrasedecrypt'
-import { loadNote, next } from './wizardpassphrasedecrypt.actions'
+import { loadNote, next, signOut } from './wizardpassphrasedecrypt.actions'
 
 const mapStateToProps = (state, { className = '' }) => {
   return {
@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch) => {
     onChange: (encryptedContent, minScore) => event =>
     dispatch(loadNote(event.target.value, encryptedContent, minScore)),
     onCheck: () => dispatch(next()),
+    onSignout: event => dispatch(signOut(event)),
   }
 }
 

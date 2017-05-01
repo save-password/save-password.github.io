@@ -24,7 +24,6 @@ export default (state = initState, action = initAction) => {
     }
     return { step: newStep }
   } else if (action.type === SET_STEP) {
-      console.log('set step')
     return { step: action.payload }
   }
   return state

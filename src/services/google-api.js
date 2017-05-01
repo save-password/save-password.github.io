@@ -5,8 +5,8 @@ export const autoSignIn = () => {
       gapi.client.init({
         discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'],
         clientId: '582092887587-0mh9fgrqpjqk3lj5jvj90alpvfnelict.apps.googleusercontent.com',
-        // scope: 'https://www.googleapis.com/auth/drive.appdata',
-        scope: 'https://www.googleapis.com/auth/drive',
+        scope: 'https://www.googleapis.com/auth/drive.appdata',
+        // scope: 'https://www.googleapis.com/auth/drive',
       }).then(() => {
         // gapi.auth2.getAuthInstance().signOut()
         gapi.auth2.getAuthInstance().isSignedIn.listen(() => {
@@ -39,16 +39,20 @@ export const findVault = () => {
   return new Promise((resolve, reject) => {
     gapi.client.drive.files.list({
       q: 'name="vault.tech" and trashed = false', // and appProperties has { key="vaultech" and value="vaultech" }
-      // spaces: 'appDataFolder',
+      spaces: 'appDataFolder',
       // spaces: 'drive',
       pageSize: 100,
       fields: 'nextPageToken, files(id, name)',
     }).then((response) => {
+      // console.log('findVault response', response);
       // console.log('Files:', response.result.files.length, response.result.files)
       const files = response.result.files
+      // console.log('files', files)
       if (files && files.length > 0) {
+        // console.log('findVault ok', files[0].id)
         resolve(files[0].id)
       } else {
+        // console.log('findVault ko')
         reject()
       }
     })
@@ -56,6 +60,34 @@ export const findVault = () => {
 }
 
 const createFileWithJSONContent = (name, data, id = '') => {
+  // console.log('createFileWithJSONContent', name, data);
+  //
+  // return new Promise((resolve, reject) => {
+  //   var fileMetadata = {
+  //     'name': 'vault.tech',
+  //     'parents': [ 'appDataFolder']
+  //   };
+  //   var media = {
+  //     mimeType: 'application/json',
+  //     body: JSON.stringify(data)
+  //   };
+  //   gapi.client.drive.files.create({
+  //      resource: fileMetadata,
+  //      media: media,
+  //      fields: 'id'
+  //   }, (err, file) => {
+  //     console.log('createFileWithJSONContent', err)
+  //     if(err) {
+  //       // // Handle error
+  //       reject(err);
+  //     } else {
+  //       resolve();
+  //       // console.log("Folder Id: ", file.id);
+  //     }
+  //   });
+  // });
+
+
   const jump = '\r\n'
   const boundary = '-------314159265358979323846'
   const delimiter = `${jump}--${boundary}${jump}`
@@ -66,6 +98,7 @@ const createFileWithJSONContent = (name, data, id = '') => {
   const metadata = {
     name,
     mimeType: contentType,
+    parents: ['appDataFolder'],
   }
 
   const multipartRequestBody = `${delimiter}Content-Type: ${contentType}${jump}${jump}${JSON.stringify(metadata)}${delimiter}Content-Type: ${contentType}${jump}${jump}${JSON.stringify(data)}${closeDelim}`
@@ -92,12 +125,11 @@ export const saveVault = (data) => {
       return createFileWithJSONContent('vault.tech', data, id)
     }).catch(() => {
       return createFileWithJSONContent('vault.tech', data)
-    }).then((e) => {
-      // console.log(e);
-      if (e.status === 200) {
+    }).then((response) => {
+      if (response.status === 200) {
         resolve()
       } else {
-        reject(e)
+        reject(response)
       }
     })
     .catch(() => {
@@ -107,8 +139,29 @@ export const saveVault = (data) => {
 }
 
 export const getVault = (id) => {
-  return gapi.client.request({
-    path: `/drive/v3/files/${id}?alt=media`,
-    method: 'GET',
+  return new Promise((resolve, reject) => {
+    gapi.client.drive.files.get({
+      fileId: id,
+      alt: 'media',
+      parents: ['appDataFolder'],
+    }).then((response) => {
+      if (response.status === 200 && response.result && response.result.data) {
+        resolve(response.result.data)
+      } else {
+        reject(response)
+      }
+    })
   })
+  // return new Promise((resolve, reject) => {
+  //   return gapi.client.request({
+  //     path: `/drive/v3/files/${id}?alt=media`,
+  //     method: 'GET',
+  //   }).then((response) => {
+  //     if (response.status === 200) {
+  //       resolve()
+  //     } else {
+  //       reject(response)
+  //     }
+  //   })
+  // })
 }

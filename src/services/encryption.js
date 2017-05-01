@@ -7,7 +7,7 @@ const options = { mode: 'ccm', ks: 128 }
 
 export const encrypt = (passphrase, noteContent) => {
   return new Promise((resolve, reject) => {
-    console.log('encrypt', noteContent)
+    // console.log('encrypt', noteContent)
     try {
       const txt = sjcl.encrypt(passphrase, JSON.stringify({ data: noteContent }),
       options, {})
@@ -17,7 +17,7 @@ export const encrypt = (passphrase, noteContent) => {
       // console.log(sjcl.decrypt(passphrase, txt, options, {}))
       resolve(txt)
     } catch (e) {
-      console.log(e)
+      // console.log(e)
       reject(e)
     }
     // console.log('jsonSjcl', jsonSjcl)

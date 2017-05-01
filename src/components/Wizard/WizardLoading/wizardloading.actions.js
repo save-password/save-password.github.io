@@ -14,21 +14,15 @@ export const retrieveLogin = () => (dispatch) => {
   autoSignIn().then((profile) => {
     const user = { displayName: profile.getName(), photoURL: profile.getImageUrl() }
     dispatch(setUser(user))
+    console.log('retrieveLogin');
     findVault().then((id) => {
+      console.log('findVault get', id);
       return getVault(id)
-    }).then((file) => {
-      if (file && file.body) {
-        try {
-          const content = JSON.parse(file.body);
-          if (content.hasOwnProperty('data')) {
-            dispatch(setEncryptedContent(content.data))
-            dispatch(setStep('passphrase-decrypt'))
-          }
-        } catch (e) {
-          console.log(e)
-        }
-      }
-    }).catch(() => {
+    }).then((data) => {
+      dispatch(setEncryptedContent(data))
+      dispatch(setStep('passphrase-decrypt'))
+    }).catch((e) => {
+      console.log('catch retrieveLogin', e);
       dispatch(setStep('passphrase'))
     })
   }).catch(() => {

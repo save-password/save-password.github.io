@@ -3,6 +3,24 @@ import { Link } from 'react-router'
 import styles from './landingpage.style'
 
 const LandingPage = ({ className }) => {
+  const openBruteForce = (event) => {
+    event.preventDefault()
+    /* global window */
+    window.open('https://en.wikipedia.org/wiki/Brute-force_attack')
+  }
+
+  const openDDos = (event) => {
+    event.preventDefault()
+    /* global window */
+    window.open('https://en.wikipedia.org/wiki/Denial-of-service_attack')
+  }
+
+  const openGithub = (event) => {
+    event.preventDefault()
+    /* global window */
+    window.open('https://github.com/save-password/save-password.github.io')
+  }
+
   return (
     <div className={`${className} ${styles.landing}`}>
       <div className={styles.welcome}>
@@ -71,10 +89,6 @@ const LandingPage = ({ className }) => {
             Besides, using Google Drive brings more benefits :
             there is no limit except your cloud storage limit and the storage is free.
           </p>
-          <p>
-            One more thing : you don't need to trust us.
-            We don't host your data, we don't store your information.
-          </p>
         </div>
         <img src="/src/img/google-drive.png" alt="google drive" className={styles.imgRight} />
       </div>
@@ -82,7 +96,7 @@ const LandingPage = ({ className }) => {
         <div className={`uk-inline-clip uk-transition-toggle ${styles.imgLeft}`}>
           <img src="/src/img/spartiates.jpeg" alt="spartiates" />
           <div className="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-default">
-            <p className="uk-h4 uk-margin-remove">Bottom</p>
+            <p className="uk-h4 uk-margin-remove">7,000 greeks blocked more than 1,000,000 persians for 2 days on a little road.</p>
           </div>
         </div>
         <div className={styles.partRight}>
@@ -99,7 +113,12 @@ const LandingPage = ({ className }) => {
       </div>
       <div className={styles.free}>
         <h3>Let's do it!</h3>
-        <p>Become the only master of your data, Use <strong>Save Password</strong></p>
+        <p>
+        Our only concern is the protection of your data.
+        This is our credo without business concerns. That is why this application is totally free and will remain free!
+        The best way to help us is to be careful online, choose what data really matters for you and do everything to protect it.
+        </p>
+        <p>Take back the control of your data, Use <strong>Save Password</strong></p>
         <Link to="/vault" className="uk-button uk-button-secondary uk-button-large">Create your secured vault</Link>
       </div>
       <div className={styles.footer}>
@@ -117,6 +136,31 @@ const LandingPage = ({ className }) => {
 
 // <img src="/src/img/spartiates.jpeg" alt="spartiates"  />
 
+//         In order to achieve our goal, we use the best technologies and work very hard to continually improve this application.
+
+
+// <div className={styles.savePassword}>
+//   <div className={styles.partLeft}>
+//     <h3>Privacy first, without compromise!</h3>
+//     <p>
+//       Our only concern is the protection of your data.
+//       In order to achieve this goal, we work very hard and use the best technologies!
+//     </p>
+//     <p>
+//       First we have choosen Google Drive to protect you against basic attacks like &nbsp;
+//       <a href="https://en.wikipedia.org/wiki/Brute-force_attack" onClick={openBruteForce}>brute-force attacks</a>
+//       &nbsp;or <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack" onClick={openDDos}>DDoS attacks</a>.
+//       Notice that even if someone get access to your Google Drive, he could get
+//       your password because the data are in special hidden folder.
+//     </p>
+//     <p>
+//       Besides we use AES-256 encryption algorithm and the code of this application is
+//       &nbsp;<a href="https://github.com/save-password/save-password.github.io/" onClick={openGithub}>public</a> so do not hesitate
+//       to check it.
+//     </p>
+//   </div>
+//   <img src="/src/img/google-drive.png" alt="privacy first" className={styles.imgRight} />
+// </div>
 
 LandingPage.propTypes = {
   className: PropTypes.string,
